@@ -13,23 +13,28 @@
       font-family: 'Inter', sans-serif;
     }
     body {
-      background: #f4f4f4;
-      color: #333;
+      background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+      color: #2c3e50;
       line-height: 1.6;
     }
     header {
-      background: #222;
+      background: #1abc9c;
       color: white;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
       text-align: center;
+      border-bottom: 5px solid #16a085;
     }
     .container {
       max-width: 960px;
       margin: 2rem auto;
       padding: 0 1rem;
+      animation: fadeIn 1s ease-in;
     }
     h1, h2 {
       margin-bottom: 1rem;
+    }
+    h2 {
+      color: #34495e;
     }
     .skills, .projects, .contact {
       margin-bottom: 3rem;
@@ -41,31 +46,48 @@
       gap: 1rem;
     }
     ul li {
-      background: #ddd;
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
+      background: #ecf0f1;
+      padding: 0.7rem 1.2rem;
+      border-radius: 25px;
+      font-weight: bold;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .project-box {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-top: 1rem;
     }
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      background: #222;
+      background: #1abc9c;
       color: white;
     }
     a {
-      color: #0066cc;
+      color: #1abc9c;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Angela Nikolova</h1>
-    <p>Creative Technologist | Junior Front-End Developer</p>
+    <p>Creative Technologist | Aspiring Front-End Developer</p>
   </header>
 
   <div class="container">
     <section class="about">
       <h2>About Me</h2>
-      <p>I’m a bioinformatics student with a passion for technology, design, and problem solving. I'm currently transitioning into front-end development and love creating intuitive and visually appealing web experiences.</p>
+      <p>I’m a bioinformatics student with a deep passion for merging creativity and code. With experience in design, branding, and programming, I’m now transitioning into front-end development—where logic meets beauty. I love building visual experiences that communicate clearly and feel intuitive.</p>
     </section>
 
     <section class="skills">
@@ -73,27 +95,41 @@
       <ul>
         <li>HTML</li>
         <li>CSS</li>
+        <li>JavaScript</li>
         <li>Python</li>
         <li>Figma</li>
-        <li>Adobe Photoshop</li>
+        <li>Photoshop</li>
         <li>Canva</li>
+        <li>Responsive Design</li>
       </ul>
     </section>
 
     <section class="projects">
       <h2>Projects</h2>
-      <p>🚧 Coming soon: My first interactive front-end app!</p>
+      <div class="project-box">
+        <h3>💡 ohSWAPP! App Concept</h3>
+        <p>Co-developed a sustainable fashion app. I designed the UI/UX in Figma and Canva and helped plan the launch strategy and branding roadmap. A creative blend of tech and environmental consciousness.</p>
+      </div>
+      <div class="project-box">
+        <h3>🎨 Conference Visual Identity</h3>
+        <p>Designed the entire visual branding for a student conference, including logos, banners, and social media graphics. Ensured consistency in user experience across all platforms.</p>
+      </div>
+      <div class="project-box">
+        <h3>📌 Portfolio Website</h3>
+        <p>This very site! Built with HTML and CSS, it's a space to experiment and grow as I continue learning front-end development.</p>
+      </div>
     </section>
 
     <section class="contact">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:nikolovaangela8@yahoo.com">nikolovaangela8@yahoo.com</a></p>
       <p>Phone: +386 69 706 694</p>
+      <p>GitHub: <a href="https://github.com/nikolovaaangela" target="_blank">@nikolovaaangela</a></p>
     </section>
   </div>
 
   <footer>
-    <p>&copy; 2025 Angela Nikolova. All rights reserved.</p>
+    <p>&copy; 2025 Angela Nikolova. Designed with 💚 and caffeine.</p>
   </footer>
 </body>
 </html>
