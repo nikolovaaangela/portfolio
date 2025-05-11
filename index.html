@@ -3,148 +3,770 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Angela Nikolova | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>Angela Nikolova | Creative Technologist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    :root {
+      --primary: #800020;
+      --primary-light: #a8324a;
+      --secondary: #43302E;
+      --accent: #FF7E5F;
+      --light: #f8f9fa;
+      --dark: #2c3e50;
+      --text: #34495e;
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --section-padding: 8rem 0;
+    }
+    
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
     }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
     body {
-      background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-      color: #2c3e50;
-      line-height: 1.6;
-      transition: background 0.5s ease, color 0.5s ease;
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: default;
     }
+    
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    /* Smooth scroll container */
+    .smooth-scroll {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      will-change: transform;
+    }
+    
     header {
-      background: #800020;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
       color: white;
-      padding: 3rem 1rem;
+      height: 100vh;
+      min-height: 800px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+    
+    .header-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+      background-size: cover;
+      opacity: 0.3;
+    }
+    
+    .header-content {
+      max-width: 800px;
+      padding: 0 2rem;
       text-align: center;
-      border-bottom: 5px solid #43302E;
-      animation: slideIn 1s ease-out;
+      position: relative;
+      z-index: 2;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 1.2s var(--transition) forwards;
+      animation-delay: 0.3s;
     }
+    
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    header p {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+      animation-delay: 1.2s;
+      transition: all 0.3s ease;
+    }
+    
+    .scroll-down:hover {
+      transform: translateX(-50%) translateY(5px);
+    }
+    
     .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      animation: fadeIn 1s ease-in;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
-    h1, h2 {
+    
+    section {
+      padding: var(--section-padding);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    section:nth-child(even) {
+      background-color: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-title h2 {
+      display: inline-block;
+      position: relative;
+      padding-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s var(--transition) forwards;
+    }
+    
+    .section-title h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+      transition: width 0.6s ease;
+    }
+    
+    .section-title:hover h2::after {
+      width: 120px;
+    }
+    
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .about-text {
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInRight 0.8s var(--transition) forwards;
+      animation-delay: 0.3s;
+    }
+    
+    .about-text p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .about-image {
+      position: relative;
+      opacity: 0;
+      transform: translateX(20px);
+      animation: fadeInLeft 0.8s var(--transition) forwards;
+      animation-delay: 0.3s;
+    }
+    
+    .about-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: var(--transition);
+    }
+    
+    .about-image:hover img {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 2rem;
+    }
+    
+    .skill-card {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .skill-card:nth-child(1) { animation-delay: 0.1s; }
+    .skill-card:nth-child(2) { animation-delay: 0.2s; }
+    .skill-card:nth-child(3) { animation-delay: 0.3s; }
+    .skill-card:nth-child(4) { animation-delay: 0.4s; }
+    .skill-card:nth-child(5) { animation-delay: 0.5s; }
+    .skill-card:nth-child(6) { animation-delay: 0.6s; }
+    .skill-card:nth-child(7) { animation-delay: 0.7s; }
+    .skill-card:nth-child(8) { animation-delay: 0.8s; }
+    
+    .skill-card:hover {
+      transform: translateY(-10px) !important;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+    }
+    
+    .skill-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .skill-card:hover i {
+      transform: scale(1.1);
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+    
+    .project-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      transition: var(--transition);
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .project-card:nth-child(1) { animation-delay: 0.2s; }
+    .project-card:nth-child(2) { animation-delay: 0.4s; }
+    .project-card:nth-child(3) { animation-delay: 0.6s; }
+    
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.03) 100%);
+      z-index: 1;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px) !important;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+    
+    .project-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 1.2s var(--transition);
+    }
+    
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+    
+    .project-content {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+      background: white;
+    }
+    
+    .project-content h3 {
       margin-bottom: 1rem;
+      color: var(--primary);
+      transition: var(--transition);
     }
-    h2 {
-      color: #34495e;
+    
+    .project-card:hover .project-content h3 {
+      color: var(--accent);
     }
-    .skills, .projects, .contact {
-      margin-bottom: 3rem;
-    }
-    ul {
-      list-style: none;
+    
+    .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
     }
-    ul li {
-      background: #ecf0f1;
-      padding: 0.7rem 1.2rem;
-      border-radius: 25px;
-      font-weight: bold;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease, background 0.3s;
+    
+    .tag {
+      background: var(--light);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
     }
-    ul li:hover {
-      transform: scale(1.05);
-      background: #dfe6e9;
-    }
-    .project-box {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-top: 1rem;
-      transition: transform 0.3s ease;
-    }
-    .project-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #43302E;
+    
+    .project-card:hover .tag {
+      background: var(--primary);
       color: white;
     }
-    a {
-      color: #43302E;
-      text-decoration: none;
-      transition: color 0.3s ease;
+    
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
     }
-    a:hover {
-      text-decoration: underline;
-      color: #43302E;
+    
+    .contact-card {
+      background: white;
+      border-radius: 10px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
     }
+    
+    .contact-card:nth-child(1) { animation-delay: 0.2s; }
+    .contact-card:nth-child(2) { animation-delay: 0.4s; }
+    .contact-card:nth-child(3) { animation-delay: 0.6s; }
+    
+    .contact-card:hover {
+      transform: translateY(-10px) !important;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    
+    .contact-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+    
+    .contact-card:hover i {
+      transform: scale(1.1);
+      color: var(--accent);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .social-links a {
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .social-links a:nth-child(1) { animation-delay: 0.2s; }
+    .social-links a:nth-child(2) { animation-delay: 0.4s; }
+    .social-links a:nth-child(3) { animation-delay: 0.6s; }
+    .social-links a:nth-child(4) { animation-delay: 0.8s; }
+    
+    .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-5px) !important;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+      position: relative;
+    }
+    
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .footer-quote {
+      font-style: italic;
+      margin: 1.5rem 0;
+      opacity: 0.8;
+      font-size: 1.1rem;
+    }
+    
+    /* Animation Classes */
+    .animate {
+      animation: fadeInUp 0.8s var(--transition) forwards;
+    }
+    
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-    @keyframes slideIn {
-      from {opacity: 0; transform: translateY(-30px);}
-      to {opacity: 1; transform: translateY(0);}
+    
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from { 
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from { 
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Scroll Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: var(--accent);
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      :root {
+        --section-padding: 6rem 0;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .about-image {
+        order: -1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 5rem 0;
+      }
+      
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .header-content {
+        padding: 0 1.5rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Angela Nikolova</h1>
-    <p>Creative Technologist | Aspiring Front-End Developer</p>
-  </header>
-
-  <div class="container">
-    <section class="about">
-      <h2>About Me</h2>
-      <p>I’m a bioinformatics student with a deep passion for merging creativity and code. With experience in design, branding, and programming, I’m now transitioning into front-end development—where logic meets beauty. I love building visual experiences that communicate clearly and feel intuitive.</p>
-    </section>
-
-    <section class="skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>Java</li>
-        <li>C/C++</li>
-        <li>Python</li>
-        <li>Figma</li>
-        <li>Adobe Tools</li>
-        <li>Responsive Design</li>
-      </ul>
-    </section>
-
-    <section class="projects">
-      <h2>Projects</h2>
-      <div class="project-box">
-        <h3>💡 ohSWAPP! App Concept</h3>
-        <p>Co-developed a sustainable fashion app. I designed the UI/UX in Figma and helped plan the launch strategy and branding roadmap. A creative blend of tech and environmental consciousness.</p>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress"></div>
+  
+  <!-- Smooth Scroll Container -->
+  <div class="smooth-scroll">
+    <header>
+      <div class="header-overlay"></div>
+      <div class="header-content">
+        <h1>Angela Nikolova</h1>
+        <p>Creative Technologist & Front-End Developer</p>
+        <p class="tagline">Where biology meets design and code</p>
       </div>
-      <div class="project-box">
-        <h3>🎨 Conference Visual Identity</h3>
-        <p>Designed the entire visual branding for a student conference, including logos, banners, and social media graphics. Ensured consistency in user experience across all platforms.</p>
+      <div class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
       </div>
-    </section>
+    </header>
 
-    <section class="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:nikolovaangela8@yahoo.com">nikolovaangela8@yahoo.com</a></p>
-      <p>Phone: +386 69 706 694</p>
-      <p>GitHub: <a href="https://github.com/nikolovaaangela" target="_blank">@nikolovaaangela</a></p>
-    </section>
+    <main>
+      <section class="about">
+        <div class="container">
+          <div class="section-title">
+            <h2>About Me</h2>
+          </div>
+          <div class="about-content">
+            <div class="about-text">
+              <p>I'm a bioinformatics student with a deep passion for merging creativity and code. With experience in design, branding, and programming, I'm now transitioning into front-end development—where logic meets beauty.</p>
+              <p>I love building visual experiences that communicate clearly and feel intuitive. My unique background allows me to approach problems from both analytical and creative perspectives, resulting in solutions that are both functional and beautiful.</p>
+              <p>When I'm not coding or designing, you can find me exploring the intersection of biology and technology, or creating digital art inspired by molecular structures.</p>
+            </div>
+            <div class="about-image">
+              <!-- Placeholder for your image -->
+              <div style="width: 100%; height: 400px; background: linear-gradient(45deg, #f5f5f5, #e0e0e0); border-radius: 10px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills">
+        <div class="container">
+          <div class="section-title">
+            <h2>My Skills</h2>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card animate">
+              <i class="fab fa-html5"></i>
+              <h3>HTML5</h3>
+            </div>
+            <div class="skill-card animate">
+              <i class="fab fa-css3-alt"></i>
+              <h3>CSS3</h3>
+            </div>
+            <div class="skill-card animate">
+              <i class="fab fa-js"></i>
+              <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card animate">
+              <i class="fab fa-java"></i>
+              <h3>Java</h3>
+            </div>
+            <div class="skill-card animate">
+              <i class="fas fa-code"></i>
+              <h3>C/C++</h3>
+            </div>
+            <div class="skill-card animate">
+              <i class="fab fa-python"></i>
+              <h3>Python</h3>
+            </div>
+            <div class="skill-card animate">
+              <i class="fas fa-paint-brush"></i>
+              <h3>Figma</h3>
+            </div>
+            <div class="skill-card animate">
+              <i class="fab fa-adobe"></i>
+              <h3>Adobe Suite</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects">
+        <div class="container">
+          <div class="section-title">
+            <h2>Featured Projects</h2>
+          </div>
+          <div class="projects-grid">
+            <div class="project-card animate">
+              <div class="project-image" style="background: linear-gradient(45deg, #FF7E5F, #feb47b);"></div>
+              <div class="project-content">
+                <h3>ohSWAPP! App Concept</h3>
+                <div class="project-tags">
+                  <span class="tag">UI/UX Design</span>
+                  <span class="tag">Figma</span>
+                  <span class="tag">Branding</span>
+                </div>
+                <p>Co-developed a sustainable fashion app. Designed the UI/UX in Figma and helped plan the launch strategy and branding roadmap. A creative blend of tech and environmental consciousness.</p>
+              </div>
+            </div>
+            <div class="project-card animate">
+              <div class="project-image" style="background: linear-gradient(45deg, #800020, #a8324a);"></div>
+              <div class="project-content">
+                <h3>Conference Visual Identity</h3>
+                <div class="project-tags">
+                  <span class="tag">Graphic Design</span>
+                  <span class="tag">Branding</span>
+                  <span class="tag">Adobe Suite</span>
+                </div>
+                <p>Designed the entire visual branding for a student conference, including logos, banners, and social media graphics. Ensured consistency in user experience across all platforms.</p>
+              </div>
+            </div>
+            <div class="project-card animate">
+              <div class="project-image" style="background: linear-gradient(45deg, #43302E, #5d4b49);"></div>
+              <div class="project-content">
+                <h3>Bioinformatics Visualizer</h3>
+                <div class="project-tags">
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Data Visualization</span>
+                  <span class="tag">Python</span>
+                </div>
+                <p>A web-based tool for visualizing molecular structures and biological data, combining my passion for biology with front-end development skills.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact">
+        <div class="container">
+          <div class="section-title">
+            <h2>Get In Touch</h2>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-card animate">
+              <i class="fas fa-envelope"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:nikolovaangela8@yahoo.com">nikolovaangela8@yahoo.com</a></p>
+            </div>
+            <div class="contact-card animate">
+              <i class="fas fa-phone"></i>
+              <h3>Phone</h3>
+              <p>+386 69 706 694</p>
+            </div>
+            <div class="contact-card animate">
+              <i class="fab fa-github"></i>
+              <h3>GitHub</h3>
+              <p><a href="https://github.com/nikolovaaangela" target="_blank">@nikolovaaangela</a></p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" target="_blank" class="animate"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank" class="animate"><i class="fab fa-dribbble"></i></a>
+            <a href="#" target="_blank" class="animate"><i class="fab fa-behance"></i></a>
+            <a href="#" target="_blank" class="animate"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <h3>Angela Nikolova</h3>
+        <p class="footer-quote">"In the intersection of science and art, magic happens."</p>
+        <p>&copy; 2025 All rights reserved. Have mercy :)</p>
+      </div>
+    </footer>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Angela Nikolova. Have mercy:)</p>
-  </footer>
+  <script>
+    // Smooth scroll implementation
+    document.addEventListener('DOMContentLoaded', () => {
+      // Scroll progress indicator
+      const scrollProgress = document.querySelector('.scroll-progress');
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
+        scrollProgress.style.width = scrollPercentage + '%';
+      });
+      
+      // Scroll down button
+      document.querySelector('.scroll-down').addEventListener('click', () => {
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Intersection Observer for animations
+      const animateElements = document.querySelectorAll('.animate, .section-title h2, .about-text, .about-image');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const animationDelay = element.style.animationDelay || '0s';
+            
+            // Apply the animation
+            element.style.animation = `fadeInUp 0.8s var(--transition) ${animationDelay} forwards`;
+            
+            // For specific elements with different animations
+            if (element.classList.contains('about-text')) {
+              element.style.animation = `fadeInRight 0.8s var(--transition) ${animationDelay} forwards`;
+            } else if (element.classList.contains('about-image')) {
+              element.style.animation = `fadeInLeft 0.8s var(--transition) ${animationDelay} forwards`;
+            }
+            
+            // Stop observing after animation triggers
+            observer.unobserve(element);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      animateElements.forEach(element => {
+        observer.observe(element);
+      });
+      
+      // Parallax effect for header
+      const header = document.querySelector('header');
+      const headerContent = document.querySelector('.header-content');
+      
+      window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        if (scrollPosition < window.innerHeight) {
+          header.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+          headerContent.style.transform = `translateY(${scrollPosition * 0.2}px)`;
+          header.style.opacity = 1 - (scrollPosition / (window.innerHeight * 0.5));
+        }
+      });
+      
+      // Mouse move parallax effect
+      document.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        headerContent.style.transform = `translateY(${yAxis}px) translateX(${xAxis}px)`;
+      });
+    });
+  </script>
 </body>
 </html>
